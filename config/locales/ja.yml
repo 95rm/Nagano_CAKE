@@ -5,9 +5,7 @@ ja:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
 
-ja:
-    enums:
-      order_item:
+      order:
         status:
           waiting_payment: "入金待ち"
           payment_confirmation: "入金確認"

@@ -6,11 +6,67 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= link_to "ログアウト", 'root_path', method: :delete %>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+         <ul class="navbar-nav ml-auto">
+          <% if customer_signed_in? %>
+           <li class="nav-item">
+            <%= link_to "マイページ", customert_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "商品一覧", items_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "カート", cart_items_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "ログアウト", public_homes_top_path, method: :delete, class:"nav-link text-light" %>
+           </li>
+
+          <% elsif admin_signed_in? %>
+           <li class="nav-item">
+            <%= link_to "商品一覧", admin_items_pat, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "会員一覧", admin_customers_top_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "注文履歴一覧", admin_order_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "ジャンル一覧", admin_genres_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "ログアウト", public_homes_top_path, method: :delete, class:"nav-link text-light" %>
+           </li>
+
+          <% else %>
+           <li class="nav-item">
+            <%= link_to "About", about_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "商品一覧", items_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "新規登録", new_customer_registration_path, class:"nav-link text-light" %>
+           </li>
+           <li class="nav-item">
+            <%= link_to "ログイン",  new_customer_session_path, class:"nav-link text-light" %>
+           </li>
+          <% end %>
+         </ul>
+        </div>
+       </div>
+      </nav>
+    </header>
+   <%= yield %>
+
   </body>
 </html>
