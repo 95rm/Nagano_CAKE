@@ -3,7 +3,7 @@
   <h2 class="bg-secondary text-dark">商品新規登録</h2>
  </div>
 
-     <%= form_with model: @item do |f| %>
+     <%= form_with model: @item, url:"/admin/items", method: :post do |f| %>
      <div class="row">
        <div class="col-3"><p>商品画像</p></div>
        <div class="col-3"><%= f.file_field :image %></div>
@@ -19,12 +19,10 @@
        <div class="col-3"><%= f.text_area :introduction, class: "col-xs-3" %></div>
      </div>
 
-     <% if false %>
      <div class="row">
        <div class="col-3"><p>ジャンル</p></div>
-       <div class="col-3"><%= f.select :faculty, [["ケーキ", "ケーキ"], ["焼き菓子", "焼き菓子"], ["あ", "あ"], ["い", "い"]], include_blank: "‐‐選択して下さい‐‐" %></div>
+       <div class="col-3"><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>"‐‐選択して下さい‐‐"</div>
      </div>
-     <% end %>
 
      <div class="row">
        <div class="col-3"><p>税抜価格</p></div>
@@ -33,10 +31,10 @@
 
      <div class="row">
        <div class="col-2"><p>販売ステータス</p></div>
-       <div class="col-2"><%= f.radio_button :is_active, '1' %></div>
-       <div class="col-2"><%= f.label :is_active, '販売中', value: 1 %></div>
-　　　 <div class="col-2"><%= f.radio_button :is_active, '0' %></div>
-　　　 <div class="col-2"><%= f.label :is_active, '販売中止', value: 0 %></div>
+       <div class="col-2"><%= f.radio_button :is_active, true %></div>
+       <div class="col-2"><%= f.label :is_active, '販売中', value: true %></div>
+　　　 <div class="col-2"><%= f.radio_button :is_active, false %></div>
+　　　 <div class="col-2"><%= f.label :is_active, '販売中止', value: false %></div>
      </div>
 
      <div class="row">

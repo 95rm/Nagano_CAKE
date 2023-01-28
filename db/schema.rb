@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_25_064802) do
+ActiveRecord::Schema.define(version: 2023_01_28_111803) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(version: 2023_01_25_064802) do
   end
 
   create_table "addresses", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -58,6 +62,8 @@ ActiveRecord::Schema.define(version: 2023_01_25_064802) do
   end
 
   create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,6 +96,7 @@ ActiveRecord::Schema.define(version: 2023_01_25_064802) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
@@ -99,14 +106,17 @@ ActiveRecord::Schema.define(version: 2023_01_25_064802) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.string "number", null: false
-    t.string "unit_price", null: false
+    t.integer "orders_id", null: false
+    t.integer "item_id", null: false
+    t.integer "number", null: false
+    t.integer "unit_price", null: false
     t.integer "making_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
     t.string "shipping_postal_code", null: false
     t.string "shipping_address", null: false
     t.string "shipping_name", null: false

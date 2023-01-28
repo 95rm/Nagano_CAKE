@@ -3,7 +3,7 @@
     <h2>商品</h2>
   </div>
 
-  <%= form_with model:@item, url:admin_item(@item.id), method: :Patch do |f|%>
+  <%= form_with model:@item, url:admin_item_path(@item.id), method: :Patch do |f|%>
   <div class="row">
     <p class="col-3">商品画像
     <div class="col-3">
@@ -25,12 +25,10 @@
     </div>
   </div>
 
-  <% if false %>
   <div class="row">
     <p class="col-3">ジャンル</p>
-    <%= f.select : %>
+    <div class="col-3"><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></div>
   </div>
-  <% end %>
 
   <div class="row">
     <p class="col-3">税抜価格</p>
@@ -39,16 +37,18 @@
     </div>
   </div>
 
-  <% if false %>
   <div class="row">
     <p class="col-3">販売ステータス</p>
-    <div class="col-3">
-    </div>
+    <div class="col-2"><%= f.radio_button :is_active, true %></div>
+    <div class="col-2"><%= f.label :is_active, '販売中', value: true %></div>
+　　<div class="col-2"><%= f.radio_button :is_active, false %></div>
+　　<div class="col-2"><%= f.label :is_active, '販売停止中', value: false %></div>
   </div>
-  <% end %>
 
   <div class="row">
 　　　 <%= f.submit '保存を変更する', class: "btn btn-success center-block" %>
   </div>
+
+  <% end %>
 
 </div>
