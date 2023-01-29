@@ -24,12 +24,11 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
 
-    resources :customers, only: [:show, :edit, :update]do
-     collection do
-      get :stop
-      patch :withdraw
-     end
-    end
+      get '/customers' => 'customers#show'
+      get '/customers/edit' => 'customers#edit'
+      patch '/customers' => 'customers#update'
+      get '/customers/stop' => 'customers#stop'
+      patch '/customers/withdraw' => 'customers#withdraw'
 
     resources :cart_items, only: [:index, :create, :update, :destroy]do
      collection do
