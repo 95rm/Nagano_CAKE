@@ -3,7 +3,7 @@
     <h2>商品</h2>
   </div>
 
-  <%= form_with model:@item, url:admin_item_path(@item.id), method: :Patch do |f|%>
+  <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
   <div class="row">
     <p class="col-3">商品画像
     <div class="col-3">
