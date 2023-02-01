@@ -40,7 +40,13 @@
 
   <div class="row">
     <div class="col-2">会員ステータスス</div>
-    <div class="col-3">退会機能実装後作成</div>
+    <div class="col-3">
+      <% if @customer.is_deleted == true %>
+       <p class="text-secondary">退会</p>
+      <% else @customer.is_deleted == false %>
+       <p class="text-success">有効</p>
+      <% end %>
+    </div>
   </div>
 
   <div class="row">

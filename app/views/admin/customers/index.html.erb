@@ -20,7 +20,13 @@
          <td class="col-2"><%= link_to f.last_name, admin_customer_path(f.id) %><%= f.first_name %></td>
         </span>
         <td class="col-2"><%= f.email %></td>
-        <td class="col-3">退会機能つけたら実装する</td>
+        <td class="col-3">
+          <% if f.is_deleted == true %>
+           <p class="text-secondary">退会</p>
+          <% else f.is_deleted == false %>
+           <p class="text-success">有効</p>
+          <% end %>
+        </td>
       </tr>
     </tbody>
     <% end %>
