@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :customers, skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :admin do
@@ -24,9 +16,9 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
 
-      get '/customers' => 'customers#show'
-      get '/customers/edit' => 'customers#edit'
-      patch '/customers' => 'customers#update'
+      get '/customers/my_page' => 'customers#show'
+      get '/customers/information/edit' => 'customers#edit'
+      patch '/customers/information' => 'customers#update'
       get '/customers/stop' => 'customers#stop'
       patch '/customers/withdraw' => 'customers#withdraw'
 
@@ -46,6 +38,15 @@ Rails.application.routes.draw do
     resources :address, only: [:index, :create, :edit, :update, :destroy]do
     end
   end
+
+  devise_for :customers, skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
 
 
 end
