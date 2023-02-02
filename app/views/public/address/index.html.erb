@@ -37,10 +37,10 @@
          <td class="col-3"><%= addresses.address %></td>
          <td class="col-3"><%= addresses.name %></td>
          <td>
-         <%= link_to '編集する', edit_address_path, class: "btn btn-success" %>
+         <%= link_to '編集する', edit_address_path(addresses.id), class: "btn btn-success" %>
          </td>
          <td>
-         <%= link_to '削除する', address_index_path, method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
+         <%= link_to '削除する', address_path(addresses.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
          </td>
        </tr>
       <% end %>
