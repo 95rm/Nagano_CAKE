@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h2 class="bg-dark-subtle text-dark">商品一覧</h2>
-   <button type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
+   <a class="btn btn-primary rounded-circle p-0"  href="/admin/items/new" style="width:2rem;height:2rem;">＋</a>
   </div>
 
   <table>
@@ -30,6 +30,7 @@
            <i class="font-weight-bold text-info"></i>販売中止
           <% end %>
         </td>
+      <td><%= link_to "Destroy", admin_item_path(item.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></td>
       </tr>
       <% end %>
     </tbody>

@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row">
-    <h2>商品一覧(全<%= @item_name.count %>件)</h2>
+    <h2>商品一覧(全件)</h2>
   </div>
 
 
   <div class="row">
     <% @item.each do |item| %>
     <div class="col-3">
-      <%= image_tag item.get_image(250,200) %>
+　　　<%= link_to item_path(item.id) do %>
+       <%= image_tag item.get_image(250,200) %>
+      <% end %>
       <div class="d-flex align-items-center">
       <%= item.name %>
       </div>
