@@ -1,2 +1,8 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @cart_item.each do |cart_item| %>
+    <%= image_tag cart_item.get_image(150,100) %>
+    <%= cart_item %>
+    <% end %>
+  </div>
+</div>
