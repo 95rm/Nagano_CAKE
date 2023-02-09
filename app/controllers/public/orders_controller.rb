@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def verification
+    @total = 0
     @order = Order.new(order_params)
     if params[:order][:address_select] == "0"
        @order.shipping_postal_code = current_customer.postal_code
@@ -16,12 +17,21 @@ class Public::OrdersController < ApplicationController
        @order.shipping_name = address.name
     elsif params[:order][:address_select] == "2"
     end
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items
   end
 
   def create
     @order = Order.new(order_params)
     @order.save
+    current_customer.cart_items.each do |cart_item|
+      order_item = OrderItem.new
+      order_item.item_id = cart_item.item_id
+      order_item.orders_id = @order_id
+      order_item.number = cart_item.amount
+      order_item.unit_price = cart_item.item.price
+      order_item.save
+    end
+    current_customer.cart_items.destroy_all
     redirect_to complete_orders_path
   end
 
