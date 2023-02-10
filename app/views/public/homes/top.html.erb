@@ -11,9 +11,7 @@
 <div class="row">
     <% @item.each do |item| %>
     <div class="col-3">
-　　　<%= link_to item_path(item.id) do %>
-       <%= image_tag item.get_image(250,200) %>
-      <% end %>
+      <%= image_tag item.get_image(250,200) %>
       <div class="d-flex align-items-center">
       <%= item.name %>
       </div>

@@ -23,8 +23,8 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
+    order_item = OrderItem.new
     current_customer.cart_items.each do |cart_item|
-      order_item = OrderItem.new
       order_item.item_id = cart_item.item_id
       order_item.orders_id = @order_id
       order_item.number = cart_item.amount
@@ -36,9 +36,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = order.find(params[:id])
+    @order_item = @order.order_item
   end
 
   def order_params
