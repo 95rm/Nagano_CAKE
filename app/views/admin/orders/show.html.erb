@@ -1,2 +1,30 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <h2>注文履歴詳細</h2>
+  <% @order.each do |order| %>
+  <div class="row">
+    <div class="col-3"><p>購入者</p></div>
+    <div class="col-3"><%= order.shipping_name %></div>
+  </div>
+  <div class="row">
+    <div class="col-3"><p>注文日</p></div>
+    <div class="col-3"><%= order.created_at %></div>
+  </div>
+  <div class="row">
+    <div class="col-3"><p>郵送先</p></div>
+    <div class="col-3"><%= order.order_display %></div>
+    <div class="col-3"><%= order.shipping_name %></div>
+  </div>
+  <div class="row">
+    <div class="col-3"><p>支払方法</p></div>
+    <div class="col-3"><%= order.payment_method %></div>
+  </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-3"><p>注文ステータス</p></div>
+    <div class="col-3"></div>
+  </div>
+
+
+
+</div>

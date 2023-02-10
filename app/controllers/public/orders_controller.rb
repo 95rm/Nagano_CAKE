@@ -40,7 +40,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = order.find(params[:id])
+    @total = 0
+    @order = Order.find(params[:id])
     @order_item = @order.order_item
   end
 
