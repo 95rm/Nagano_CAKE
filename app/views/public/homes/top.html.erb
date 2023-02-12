@@ -11,7 +11,9 @@
 <div class="row">
     <% @item.each do |item| %>
     <div class="col-3">
+      <%# if item.image.attached? %>
       <%= image_tag item.get_image(250,200) %>
+      <%# end %>
       <div class="d-flex align-items-center">
       <%= item.name %>
       </div>

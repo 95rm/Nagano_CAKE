@@ -49,10 +49,11 @@
   </div>
 
   <%= form_with model: @order, url: orders_path do |f| %>
-   <%= f.hidden_field :payment_method => @order.payment_method %>
-   <%= f.hidden_field :shipping_postal_code => @order.shipping_postal_code %>
-   <%= f.hidden_field :shipping_address => @order.shipping_address %>
+   <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+   <%= f.hidden_field :shipping_postal_code, :value => @order.shipping_postal_code %>
+   <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
    <%= f.hidden_field :total_payment, :value => @total+@postage %>
+   <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
    <%= f.submit '注文を確定する', data: {confirm: '購入してもよろしいですか？'}, class: "btn btn-success" %>
   <% end %>
 
