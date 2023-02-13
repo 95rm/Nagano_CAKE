@@ -25,8 +25,8 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @order.customer_id = current_customer.id
     @order.save
-    order_item = OrderItem.new
     current_customer.cart_items.each do |cart_item|
+      order_item = OrderItem.new
       order_item.item_id = cart_item.item_id
       order_item.order_id = @order.id
       order_item.number = cart_item.amount

@@ -10,6 +10,17 @@ ja: # 日本語の設定を行う
         production: "製作中"
         shipping_preparation: "発送準備中"
         sent: "発送済み"
+      making_status:
+        not_manufactured: "製作不可"
+        waiting_manufactured: "製作待ち"
+        production: "製作中"
+        completion_preparation: "製作完了"
+
+
+
+
+
+
   #activerecord:
   #errors:
     #messages:

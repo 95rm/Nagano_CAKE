@@ -1,6 +1,7 @@
 class Admin::HomesController < ApplicationController
   def top
-    @customer = Customer.all
+    @order = Order.all
+    #@order_item = @order.order_item
   end
 
   private
