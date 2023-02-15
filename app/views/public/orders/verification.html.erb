@@ -19,7 +19,7 @@
         <td><%= image_tag cart_item.item.get_image(100,50) %><%= cart_item.item.name %></td>
         <td><%= cart_item.item.with_tax_price %></td>
         <td><%= cart_item.amount %></td>
-        <td><%= cart_item.subtotal %></td>
+        <td><%= cart_item.subtotal %></td>　<%#=cart_itemモデルにsubtotalの数式記載 %>
         <% @total += cart_item.subtotal %>
       </tr>
       <% end %>

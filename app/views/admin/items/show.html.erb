@@ -23,7 +23,7 @@
     <p class="col-3">税込価格</p></br>
     <p>(税抜価格)</p>
     <div class="col-3"><%= @item.price %></div>
-    <%= @item.add_tax_price.to_s(:dalimited) %>円
+    <%= @item.with_tax_price.to_s(:dalimited) %>円
    </div>
 
    <div class="row">

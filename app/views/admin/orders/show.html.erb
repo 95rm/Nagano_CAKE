@@ -21,13 +21,14 @@
   <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
   <div class="row">
     <div class="col-3"><p>注文ステータス</p>
-      <%= f.select :order_id, options_from_collection_for_select(Order.all, :id, :status_i18n) %>
+      <%#= f.select :status, options_from_collection_for_select(Order.all, :id, :status_i18n)このセレクトボックスだとデータベースに登録されたものが出力されるだけになってしまう %>
+      <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
       <%= f.submit '更新', class: "btn btn-success" %>
     </div>
   </div>
   <% end %>
-
-  <table>
+  <div class="row">
+    <table class="col-md-7">
     <thead>
       <tr>
         <th>商品名</th>
@@ -44,29 +45,29 @@
         <td><%= order_item.item.price %></td>
         <td><%= order_item.number %></td>
         <td><%= order_item.item.price*order_item.number %></td>
-        <%= form_with model: order_item, url: admin_orders_detail_path, method: :pacth do |f| %>
-         <td><%= f.select :order_item_id, options_from_collection_for_select(OrderItem.all, :id, :making_status) %></td>
+        <%= form_with model: order_item, url: admin_orders_detail_path, method: :patch do |f| %>
+        <td><%= f.select :making_status, OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %></td>
+        <td><%= f.submit '更新', class: "btn btn-success" %></td>
+        <% @order_total += order_item.item.price %>
         <% end %>
       </tr>
     </tbody>
     <% end %>
   </table>
 
-   <table>
+   <table class="col-md-2  offset-md-2">
 　　<tbody>
     <tr>
-      <th>商品合計</th><td><%= @order.total_payment %></td>
+      <th>商品合計</th><td><%= @order_total %></td>
     </tr>
     <tr>
       <% @postage = 800 %>
       <th>送料</th><td><%= @postage %></td>
     </tr>
     <tr>
-      <th>請求金額合計</th><td><%= @order.total_payment+@postage %></td>
+      <th>請求金額合計</th><td><%= @order_total+@postage %></td>
     </tr>
     </tbody>
    </table>
-
-
-
+  </div>
 </div>
