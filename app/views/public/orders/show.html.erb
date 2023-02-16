@@ -1,48 +1,63 @@
 <div class="container">
-  <h2>注文履歴詳細</h2>
+  <div class="row mt-3">
+   <h2>注文履歴詳細</h2>
+  </div>
 
-  <p>注文情報</p>
-  <table border = "1">
-    <tr>
-      <th>注文日</th>
-      <td><%= @order.created_at %></td>
-    </tr>
-    <tr>
-      <th>配送先</th>
-      <td>
-        <%= @order.shipping_postal_code %>
-        <%= @order.shipping_address %></br>
-        <%= @order.shipping_name %>
-      </td>
-    </tr>
-    <tr>
-      <th>支払方法</th>
-      <td><%= @order.payment_method_i18n %></td>
-    </tr>
-    <tr>
-      <th>ステータス</th>
-      <td><%= @order.status_i18n %></td>
-    </tr>
-  </table>
+  <div class="row mt-3">
+    <div class="col-sm-4">
+     <p class="font-weight-bold">注文情報</p>
+    </div>
+    <div class="col-sm-1">
+     <p class="font-weight-bold">請求情報</p>
+    </div>
+  </div>
 
-  <p>請求情報</p>
-  <table border = "1">
-    <tr>
-      <th>商品合計</th>
-      <% @postage = 800 %>
-       <td><%= @total = @order.total_payment - @postage %></td>
-    </tr>
-    <tr>
-      <th>配送料</th>
-      <td><%= @postage %></td>
-    </tr>
-    <tr>
-      <th>ご請求額</th>
-      <td><%= @postage + @total %></td>
-    </tr>
-  </table>
+  <div class="row col-sm">
+    <table border = "1">
+      <tr>
+        <th>注文日</th>
+        <td><%= @order.created_at %></td>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <td>
+          <%= @order.shipping_postal_code %>
+          <%= @order.shipping_address %></br>
+          <%= @order.shipping_name %>
+        </td>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <th>ステータス</th>
+        <td><%= @order.status_i18n %></td>
+      </tr>
+    </table>
 
-  <p>注文内容</p>
+    <div class="ml-5 col-sm">
+    <table border = "1">
+      <tr>
+        <th>商品合計</th>
+        <% @postage = 800 %>
+         <td><%= @total = @order.total_payment - @postage %></td>
+      </tr>
+      <tr>
+        <th>配送料</th>
+        <td><%= @postage %></td>
+      </tr>
+      <tr>
+        <th>ご請求額</th>
+        <td><%= @postage + @total %></td>
+      </tr>
+    </table>
+    </div>
+ </div>
+
+ <div class="mt-3">
+  <p class="font-weight-bold">注文内容</p>
+ </div>
   <table border = "1">
     <thead>
       <tr>

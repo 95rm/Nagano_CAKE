@@ -1,14 +1,16 @@
 <div class="container">
-<p>
+<p class="text-center mt-3">
   ようこそ、ながのCAKEへ！</br>
   このサイトは、ケーキ販売のECサイトになります。</br>
   会員でない方も商品の閲覧はできますが、</br>
   購入には会員登録が必要になります。
 </p>
 
-<h3>新着商品</h3>
+<div class="row justify-content-start">
+ <h3>新着商品</h3>
+</div>
 
-<div class="row">
+<div class="row justify-content-center">
     <% @item.each do |item| %>
     <div class="col-3">
       <%# if item.image.attached? %>
@@ -24,6 +26,8 @@
     <% end %>
 </div>
 
-<%= link_to '全ての商品を見る>', items_path %>
+<div class="row justify-content-end">
+ <%= link_to '全ての商品を見る>', items_path %>
+</div>
 
 </div>

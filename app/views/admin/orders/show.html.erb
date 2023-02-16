@@ -9,11 +9,11 @@
     <div class="col-3"><%= @order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></div>
   </div>
   <div class="row">
-    <div class="col-3"><p>郵送先</p></div>
-    <div class="col-3"><%= @order.order_display %></div>
-    <div class="col-3"><%= @order.shipping_name %></div>
+    <div class="col-3"><p>配送先</p></div>
+    <div class="col-3"><%= @order.order_display %><br>
+    <%= @order.shipping_name %></div>
   </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-3"><p>支払方法</p></div>
     <div class="col-3"><%= @order.payment_method_i18n %></div>
   </div>

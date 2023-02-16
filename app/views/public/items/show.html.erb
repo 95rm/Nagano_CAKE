@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-3">
     <%= image_tag @item.get_image(300,250) %>
-    <div class="d-flex flex-column center-block" style="height: 200px;">
+    <div class="d-flex flex-column center-block offset-md-1" style="height: 200px;">
       <h2 class="flex-fill font-weight-bold center-block"><%= @item.name %></h2>
       <h3 class="flex-fill center-block"><%= @item.introduction %></h3>
       <p></p>
@@ -9,11 +9,11 @@
       <p></p>
       <p></p>
       <p></p>
-      <h3 class="flex-fill center-block">￥<%= @item.price %>(税込)</h3>
+      <h3 class="flex-fill center-block">￥<%= @item.with_tax_price %>(税込)</h3>
       <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
       <%= f.hidden_field :item_id, :value => @item.id %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]] %>
+      <%= f.select :amount, [['個数選択', ], ['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]] %>
       <%= f.submit 'カートに入れる', class: "btn btn-success" %>
       <% end %>
     </div>
