@@ -38,21 +38,24 @@
         <th>製作ステータス</th>
       </tr>
     </thead>
-    <% @order_item.each do |order_item| %>
+    <% @order_total = 0 %><%# each文の中に定義すると毎回0が代入されてしまい金額が足されなくなる %>
     <tbody>
+    <% @order_item.each do |order_item| %>
       <tr>
         <td><%= order_item.item.name %></td>
-        <td><%= order_item.item.price %></td>
+        <td><%= order_item.with_tax_price %></td><%#order_itemモデルにwith_tax_priceの数式記載 %>
         <td><%= order_item.number %></td>
-        <td><%= order_item.item.price*order_item.number %></td>
+        <td><%= order_item.subtotal %></td><%#order_itemモデルにsubtotalの数式記載 %>
+        <td>
         <%= form_with model: order_item, url: admin_orders_detail_path, method: :patch do |f| %>
-        <td><%= f.select :making_status, OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %></td>
-        <td><%= f.submit '更新', class: "btn btn-success" %></td>
-        <% @order_total += order_item.item.price %>
+         <%= f.select :making_status, OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %>
+         <%= f.submit '更新', class: "btn btn-success" %>
         <% end %>
+        </td>
+        <% @order_total += order_item.with_tax_price*order_item.number %>
       </tr>
-    </tbody>
     <% end %>
+  　</tbody>
   </table>
 
    <table class="col-md-2  offset-md-2">

@@ -8,5 +8,9 @@ class OrderItem < ApplicationRecord
   def subtotal
     item.with_tax_price*number
   end
+  
+  def with_tax_price
+    (unit_price*1.1).floor
+  end
 
 end
