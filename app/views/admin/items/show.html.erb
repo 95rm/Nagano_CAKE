@@ -1,6 +1,6 @@
 <div class="container">
- <div class="row">
-  <h2 class="bg-secondary text-dark">商品詳細</h2>
+ <div class="row mt-3">
+  <h2>商品詳細</h2>
  </div>
 
   <div class="row justify-content-center">
@@ -10,19 +10,20 @@
    <table>
     <tbody>
     <tr>
-     <td style="width: 200px; ">商品名</td><td><%= @item.name %></td>
+     <td style="width: 200px; "><p class="font-weight-bold">商品名</p></td><td><%= @item.name %></td>
     </tr>
     <tr>
-     <td>商品紹介</td><td><%= @item.introduction %></td>
+     <td><p class="font-weight-bold">商品紹介</p></td><td><%= @item.introduction %></td>
     </tr>
     <tr>
-     <td>ジャンル</td><td><%=  @item.genre.name %></td>
+     <td><p class="font-weight-bold">ジャンル</p></td><td><%=  @item.genre.name %></td>
     </tr>
     <tr>
-     <td>税込価格<br>(税抜価格)</td><td><%= @item.with_tax_price.to_s(:dalimited) %></td><td>(<%= @item.price %>)円</td><rb>
+     <td><p class="font-weight-bold">税込価格</p><p class="font-weight-bold">(税抜価格)</p></td>
+     <td><%= @item.with_tax_price.to_s(:dalimited) %>(<%= @item.price %>)円</td>
     </tr>
     <tr>
-     <td>販売ステータス</td>
+     <td><p class="font-weight-bold">販売ステータス</p></td>
      <td>
       <% if @item.is_active == true %>
       <i class="font-weight-bold text-success"></i>販売中
@@ -36,7 +37,7 @@
 
   </div>
 
-   <div class="row justify-content-center">
+   <div class="row justify-content-center mt-3">
     <%= link_to "編集する", edit_admin_item_path(@item.id) , class: "btn btn-success " %>
    </div>
 
