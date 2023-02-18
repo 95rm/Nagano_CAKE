@@ -7,7 +7,7 @@
    <%#= current_customer.customer_display %>
   <%# end %>
   <div class="row">
-    <table class="table table-bordered">
+    <table border="1">
       <thead>
         <tr>
           <th>商品名</th>
@@ -20,33 +20,33 @@
         <% @cart_items.each do |cart_item| %>
         <tr>
           <td><%= image_tag cart_item.item.get_image(100,50) %><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.with_tax_price %></td>
+          <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
           <td><%= cart_item.amount %></td>
-          <td><%= cart_item.subtotal %></td>　<%#=cart_itemモデルにsubtotalの数式記載 %>
+          <td><%= cart_item.subtotal.to_s(:delimited) %></td>　<%#=cart_itemモデルにsubtotalの数式記載 %>
           <% @total += cart_item.subtotal %>
         </tr>
         <% end %>
       </tbody>
     </table>
 
-    <table class="table table-bordered">
+    <table class="offset-md-1" border="1">
       <% @postage = 800 %>
       <tr><th>送料</th><td><%= @postage %></td></tr>
 
-      <tr><th>商品合計</th><td><%= @total %><td></tr>
+      <tr><th>商品合計</th><td><%= @total.to_s(:delimited) %><td></tr>
 
-      <tr><th>請求金額</th><td><%= @total+@postage %></td></tr>
+      <tr><th>請求金額</th><td><%= (@total + @postage).to_s(:delimited) %></td></tr>
    </table>
 
   </div>
 
 
-  <div class="row mt-3">
+  <div class="row mt-4">
     <p class="font-weight-bold mr-2">支払方法</p>
     <%= @order.payment_method_i18n %>
   </div>
 
-　<div class="row mt-3">
+　<div class="row mt-2">
     <p class="font-weight-bold mr-2">お届け先</p>
     〒<%= @order.shipping_postal_code %>
     <%= @order.shipping_address %></br>
