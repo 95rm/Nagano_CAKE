@@ -21,7 +21,7 @@
     <div class="col-3"><%= @order.payment_method_i18n %></div>
   </div>
 
-  <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+  <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
   <div class="row mb-4">
    <div class="co-2"><p class="font-weight-bold">注文ステータス</p></div>
   <%#= f.select :status, options_from_collection_for_select(Order.all, :id, :status_i18n)このセレクトボックスだとデータベースに登録されたものが出力されるだけになってしまう %>
@@ -52,7 +52,7 @@
         <td><%= order_item.number %></td>
         <td><%= order_item.subtotal.to_s(:delimited) %></td><%#order_itemモデルにsubtotalの数式記載 %>
         <td>
-        <%= form_with model: order_item, url: admin_orders_detail_path, method: :patch do |f| %>
+        <%= form_with model: order_item, url: admin_orders_detail_path(order_item), method: :patch do |f| %>
          <%= f.select :making_status, OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %>
          <%= f.submit '更新', class: "btn btn-success" %>
         <% end %>
